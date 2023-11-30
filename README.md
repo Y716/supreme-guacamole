@@ -1,2 +1,2 @@
 # supreme-guacamole
-Berisi source code untuk beberapa materi ASD
+Berisi source code untuk beberapa topik ASD
