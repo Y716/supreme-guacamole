@@ -1,4 +1,3 @@
-package HackerrankSolution;
 
 import java.util.Scanner;
 
@@ -52,7 +51,6 @@ public class databukuPerpus {
                 }
             }
         }
-    in.close();
     }
 }
 
@@ -91,25 +89,28 @@ class BST {
     }
 
     public void cariTahun(NodeBST current, int tahun){
-        boolean tanda = true;
-        while(true){
+        boolean tanda = false;
+        if(current != null){
+            if(current.tahun == tahun){
+                tanda = true;
+            }
+            while(true){
             if(tahun < current.tahun){
                 if(current.left == null){
-                    tanda = false;
                     break;
                 }
                 current = current.left;
             }else if(tahun > current.tahun){
                 if(current.left == null){
-                    tanda = false;
                     break;
                 }
                 current = current.right;
             }else if(tahun == current.tahun){
+                tanda = true;
                 break;
             }
         }
-
+        }
         if(tanda){
             System.out.println(current.tahun + " - " + current.judul + " - " + current.penulis);
         }else{
@@ -120,55 +121,55 @@ class BST {
     }
 
     public void delete(int tahun) {
-		root = delete(root, tahun);
-        System.out.println("Data berhasil dihapus");
-	}
-	
-	public NodeBST delete(NodeBST current, int tahun) {
-		if (current == null) {
-			return null;
-		}
-		if (tahun < current.tahun) {
-			current.left = delete(current.left, tahun);
-			return current;
-		}
-		else if (tahun > current.tahun) {
-			current.right = delete(current.right, tahun);
-			return current;
-		}
-		else {
-			if (current.left == null && current.right == null) {
-				return null;
-			}
-			if (current.right == null) {
-				return current.left;
-			}
-			if (current.left == null) {
-				return current.right;
-			}
-			int smallestValue = findSmallestValue(current.right);
-			current.tahun = smallestValue;
-			current.right = delete(current.right, smallestValue);
-			return current;
-		}
-	}
+        root = delete(root, tahun);
+            System.out.println("Data berhasil dihapus");
+    }
+    
+    public NodeBST delete(NodeBST current, int tahun) {
+        if (current == null) {
+            return null;
+        }
+        if (tahun < current.tahun) {
+            current.left = delete(current.left, tahun);
+            return current;
+        }
+        else if (tahun > current.tahun) {
+            current.right = delete(current.right, tahun);
+            return current;
+        }
+        else {
+            if (current.left == null && current.right == null) {
+                return null;
+            }
+            if (current.right == null) {
+                return current.left;
+            }
+            if (current.left == null) {
+                return current.right;
+            }
+            int smallestValue = findSmallestValue(current.right);
+            current.tahun = smallestValue;
+            current.right = delete(current.right, smallestValue);
+            return current;
+        }
+    }
 
     public int findSmallestValue(NodeBST root) {
-		if (root.left == null) {
-			return root.tahun;
-		}
-		else {
-			return findSmallestValue(root.left);
-		}
-	}
+        if (root.left == null) {
+            return root.tahun;
+        }
+        else {
+            return findSmallestValue(root.left);
+        }
+    }
 
     public void cariPalingBaru(NodeBST current) {
         current = root;
-		if (root.right == null) {
-			System.out.println(root.tahun + " - " + root.judul + " - " + root.penulis);
-		}
-		else {
-			while(true){
+        if (root.right == null) {
+            System.out.println(root.tahun + " - " + root.judul + " - " + root.penulis);
+        }
+        else {
+            while(true){
                 if(current.right != null){
                     current = current.right;
                 }else{
@@ -176,14 +177,14 @@ class BST {
                     break;
                 }
         }
-	}
+    }
 }
     public void cariPalingLama(NodeBST current) {
         current = root;
-		if (root.left == null) {
-			System.out.println(root.tahun + " - " + root.judul + " - " + root.penulis);
-		}
-		else {
+        if (root.left == null) {
+            System.out.println(root.tahun + " - " + root.judul + " - " + root.penulis);
+        }
+        else {
             while(true){
                 if(current.left != null){
                     current = current.left;
@@ -193,16 +194,16 @@ class BST {
                 }
             }
         }
-	}
+    }
 
     public int findBiggestValue(NodeBST root) {
-		if (root.right == null) {
-			return root.tahun;
-		}
-		else {
-			return findBiggestValue(root.right);
-		}
-	}
+        if (root.right == null) {
+            return root.tahun;
+        }
+        else {
+            return findBiggestValue(root.right);
+        }
+    }
 
     public void preorder(NodeBST current) {
         System.out.println(current.tahun + " - " + current.judul + " - " + current.penulis);
